@@ -29,7 +29,7 @@ public class Prog1 {
              * How to check if component: look at two two connection, if they share common vertex, they together are in one component (will have to eb O(n^2))
              * and you need to use DFS. 
              * 
-             * 
+             * change to test ssh
              */
 
         }
