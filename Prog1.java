@@ -7,7 +7,6 @@
 /**************************************************************/
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Prog1 {
@@ -21,6 +20,18 @@ public class Prog1 {
             while (sc.hasNext()) {
                 System.out.println(sc.next());
             }
+
+            /*
+             * Ideas:
+             * 
+             * Graph class can be adjacency list or matrix, prb matrix (it is even necessary? Yes, it is. )
+             * 
+             * How to check if component: look at two two connection, if they share common vertex, they together are in one component (will have to eb O(n^2))
+             * and you need to use DFS. 
+             * 
+             * 
+             */
+
         }
         catch(Exception FileNotFoundException) {
             System.err.println("File not found");
