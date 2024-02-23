@@ -44,6 +44,6 @@ public class Graph {
     }
 
     // public String toString() {
-    //     return Arrays.toString(connectedComponents());
+    //     return Arrays.toString(connectedComponents()); just add one to each vertice b4 printing 
     // } 
 }
