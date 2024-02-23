@@ -24,6 +24,8 @@ public class Prog1 {
             /*
              * Ideas:
              * 
+             * Adjacency list. DFS. 
+             *
              * Graph class can be adjacency list or matrix, prb matrix (it is even necessary? Yes, it is. )
              * 
              * How to check if component: look at two two connection, if they share common vertex, they together are in one component (will have to eb O(n^2))
