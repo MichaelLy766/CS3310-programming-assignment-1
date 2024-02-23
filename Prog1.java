@@ -7,6 +7,8 @@
 /**************************************************************/
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Prog1 {
@@ -16,27 +18,28 @@ public class Prog1 {
         }
         File inputFile = new File(args[0]);
         try {
+            System.out.println(inputFile);
             Scanner sc = new Scanner(inputFile);
             int numVertices;
             Graph graph;
             while (sc.hasNextLine()) {
-                numVertices = Integer.parseInt(sc.next());     //change later so that you only create one int and graph object
-                graph = new Graph(numVertices);
+                numVertices = Integer.parseInt(sc.next());     
+                graph = new Graph(numVertices); 
                 while (sc.hasNext()) {
                     // get rid of parantheses, delimit by comma to get ints
                     sc.next().replace("(", "");
                     sc.next().replace(")", "");
                     String[] tokens = sc.next().split(",");
-                    graph.addEdge(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
+                    graph.addEdge(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1])); // now error is here 
                 }
                 System.out.println(graph.connectedComponents());
             }
-
+            
             sc.close();
 
         }
-        catch(Exception FileNotFoundException) {
-            System.err.println("File not found");
+        catch(FileNotFoundException fnf) {
+            fnf.printStackTrace();
         }
 
     }

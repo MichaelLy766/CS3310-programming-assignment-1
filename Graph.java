@@ -8,8 +8,8 @@ public class Graph {
     public Graph (int numVertices) {
         this.numVertices = numVertices;
         adjacencyList = new ArrayList<>();
-        for (int i = 1; i <= numVertices; i++) {
-            adjacencyList.add(i, new ArrayList<>());
+        for (int i = 0; i < numVertices; i++) {
+            adjacencyList.add(i, new ArrayList<>());        // some error here, vertices need to be 0 indexed 
         }
     }
 
@@ -34,7 +34,7 @@ public class Graph {
     public ArrayList<ArrayList<Integer>> connectedComponents() {
         boolean[] visited = new boolean[numVertices + 1];
         ArrayList<ArrayList<Integer>> cc = new ArrayList<>();
-        for (int vertex = 1; vertex <= numVertices; vertex++) {
+        for (int vertex = 0; vertex < numVertices; vertex++) {
             if (!visited[vertex]) {
                 ArrayList<Integer> component = new ArrayList<>();
                 cc.add(DFS(component, vertex, visited));
