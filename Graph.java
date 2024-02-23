@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Graph {
     int numVertices;
@@ -41,4 +42,8 @@ public class Graph {
         }
         return cc;
     }
+
+    // public String toString() {
+    //     return Arrays.toString(connectedComponents());
+    // } 
 }
