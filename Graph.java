@@ -21,7 +21,7 @@ public class Graph {
     private ArrayList<Integer> DFS(ArrayList<Integer> component, int vertex, boolean[] visited) {
         visited[vertex] = true;
         
-        component.add(vertex);
+        component.add(vertex + 1);      //may or may not fuck shit up 
 
         for (int v : adjacencyList.get(vertex)) {
             if (!visited[v]) {

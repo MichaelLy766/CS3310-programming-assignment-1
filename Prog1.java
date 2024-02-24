@@ -8,7 +8,7 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Prog1 {
@@ -18,28 +18,48 @@ public class Prog1 {
         }
         File inputFile = new File(args[0]);
         try {
-            System.out.println(inputFile);
-            Scanner sc = new Scanner(inputFile);
+            Scanner fileScanner = new Scanner(inputFile);
             int numVertices;
             Graph graph;
-            while (sc.hasNextLine()) {
-                numVertices = Integer.parseInt(sc.next());     
+            String edge;
+            String[] tokens;
+            int graphCounter = 0; 
+            while (fileScanner.hasNextLine()) {
+                graphCounter++;
+                String line = fileScanner.nextLine();
+                Scanner lineScanner = new Scanner(line);
+
+                numVertices = Integer.parseInt(lineScanner.next());     
                 graph = new Graph(numVertices); 
-                while (sc.hasNext()) {
+
+                while (lineScanner.hasNext()) {
                     // get rid of parantheses, delimit by comma to get ints
-                    sc.next().replace("(", "");
-                    sc.next().replace(")", "");
-                    String[] tokens = sc.next().split(",");
-                    graph.addEdge(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1])); // now error is here 
+                    edge = lineScanner.next();
+                    //System.out.println("edge before replacement function:" + edge);
+                    edge = edge.replace("(", "");         // replace doesnt work 
+                    edge = edge.replace(")", "");
+                    //System.out.println("edge after replacement function:" + edge);
+                    tokens = edge.split(",");
+                    //System.out.println(tokens[0]);
+                    //System.out.println(tokens[1]);      // tokens[1] is out of bounds for some reason 
+                    graph.addEdge(Integer.parseInt(tokens[0]) - 1, Integer.parseInt(tokens[1]) - 1); // now error is here 
                 }
-                System.out.println(graph.connectedComponents());
+                ArrayList<ArrayList<Integer>> cc = new ArrayList<>();
+                cc = graph.connectedComponents();
+                int numCC = cc.size();
+                System.out.println("Graph" + graphCounter + ":");
+                System.out.println(numCC + " Connected Components: " + cc + "\n");
+
+                lineScanner.close();
+
+                
             }
             
-            sc.close();
+            fileScanner.close();
 
         }
         catch(FileNotFoundException fnf) {
-            fnf.printStackTrace();
+            System.err.println("File Not Found");;
         }
 
     }
