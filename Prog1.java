@@ -19,12 +19,15 @@ public class Prog1 {
         File inputFile = new File(args[0]);
         try {
             Scanner fileScanner = new Scanner(inputFile);
-            int numVertices;
+
+            int numVertices;            // TODO: comments all vars with purpose
             Graph graph;
             String edge;
             String[] tokens;
             int graphCounter = 0; 
-            while (fileScanner.hasNextLine()) {
+
+            while (fileScanner.hasNextLine()) {     // TODO: inline comments about task performed
+                
                 graphCounter++;
                 String line = fileScanner.nextLine();
                 Scanner lineScanner = new Scanner(line);
@@ -33,33 +36,24 @@ public class Prog1 {
                 graph = new Graph(numVertices); 
 
                 while (lineScanner.hasNext()) {
-                    // get rid of parantheses, delimit by comma to get ints
                     edge = lineScanner.next();
-                    //System.out.println("edge before replacement function:" + edge);
-                    edge = edge.replace("(", "");         // replace doesnt work 
+                    edge = edge.replace("(", "");
                     edge = edge.replace(")", "");
-                    //System.out.println("edge after replacement function:" + edge);
                     tokens = edge.split(",");
-                    //System.out.println(tokens[0]);
-                    //System.out.println(tokens[1]);      // tokens[1] is out of bounds for some reason 
-                    graph.addEdge(Integer.parseInt(tokens[0]) - 1, Integer.parseInt(tokens[1]) - 1); // now error is here 
+                    graph.addEdge(Integer.parseInt(tokens[0]) - 1, Integer.parseInt(tokens[1]) - 1); 
                 }
-                ArrayList<ArrayList<Integer>> cc = new ArrayList<>();
-                cc = graph.connectedComponents();
-                int numCC = cc.size();
+                ArrayList<ArrayList<Integer>> connectedComponents = new ArrayList<>();
+                connectedComponents = graph.connectedComponents();
+                int numCC = connectedComponents.size();
                 System.out.println("Graph" + graphCounter + ":");
-                System.out.println(numCC + " Connected Components: " + cc + "\n");
+                System.out.println(numCC + " Connected Components: " + connectedComponents + "\n");
 
                 lineScanner.close();
-
-                
             }
-            
             fileScanner.close();
-
         }
         catch(FileNotFoundException fnf) {
-            System.err.println("File Not Found");;
+            System.err.println("File Not Found");
         }
 
     }
